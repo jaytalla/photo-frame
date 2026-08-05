@@ -552,7 +552,7 @@ function App() {
             >
               Sign Out
             </button>
-            <a
+            {/* <a
               className="inline-flex items-center justify-center rounded-full bg-brand-sky px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5"
               href="/photo-frame/images"
             >
@@ -563,7 +563,7 @@ function App() {
               href="/photo-frame/admin"
             >
               Admin
-            </a>
+            </a> */}
           </div>
 
           
