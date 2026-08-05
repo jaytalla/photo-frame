@@ -1,0 +1,441 @@
+.app-shell {
+  min-height: 100vh;
+  padding: 40px 24px 56px;
+  background:
+    radial-gradient(circle at top left, rgba(44, 169, 225, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(255, 111, 52, 0.16), transparent 24%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+}
+
+.hero-panel,
+.workspace {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+.hero-panel {
+  margin-bottom: 28px;
+}
+
+.hero-copy {
+  max-width: 760px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #ff6f34;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-panel h1 {
+  margin: 0;
+  color: #0d2b45;
+  font-size: clamp(2.2rem, 6vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.hero-text {
+  max-width: 640px;
+  margin: 18px 0 0;
+  color: #3d5871;
+  font-size: 1.05rem;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.88fr) minmax(320px, 1.12fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.source-panel,
+.editor-panel {
+  min-width: 0;
+}
+
+.card {
+  padding: 24px;
+  border: 1px solid rgba(13, 43, 69, 0.12);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 28px 80px rgba(13, 43, 69, 0.1);
+  backdrop-filter: blur(16px);
+}
+
+.panel-heading h2 {
+  margin: 0;
+  color: #0d2b45;
+  font-size: 1.25rem;
+}
+
+.panel-heading p {
+  margin: 8px 0 0;
+  color: #58708a;
+}
+
+.camera-box,
+.empty-state {
+  margin-top: 20px;
+  border-radius: 24px;
+  background: linear-gradient(160deg, #eef7ff 0%, #f8fbff 100%);
+}
+
+.camera-box {
+  padding: 16px;
+}
+
+.camera-feed {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  background: #bed4e8;
+  object-fit: cover;
+}
+
+.camera-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  min-height: 260px;
+  padding: 24px;
+  border: 1px dashed rgba(13, 43, 69, 0.18);
+  text-align: center;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #0d2b45;
+  font-weight: 600;
+}
+
+.empty-state span {
+  margin-top: 8px;
+  color: #58708a;
+}
+
+.frame-stage {
+  margin-top: 20px;
+  border-radius: 30px;
+  background:
+    linear-gradient(135deg, rgba(44, 169, 225, 0.1), rgba(255, 111, 52, 0.1)),
+    #ffffff;
+  padding: 18px;
+}
+
+.frame-image-layer,
+.frame-placeholder {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  aspect-ratio: 1;
+  border-radius: 24px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(44, 169, 225, 0.14), rgba(255, 111, 52, 0.12)),
+    #ffffff;
+}
+
+.photo-mask {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.editable-photo {
+  position: absolute;
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+  object-fit: cover;
+}
+
+.editable-photo:active {
+  cursor: grabbing;
+}
+
+.frame-overlay {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.frame-placeholder {
+  display: grid;
+  place-items: center;
+}
+
+.frame-placeholder p {
+  position: absolute;
+  inset: auto 24px 28px;
+  z-index: 3;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 999px;
+  background: rgba(13, 43, 69, 0.8);
+  color: #ffffff;
+  text-align: center;
+}
+
+.controls {
+  display: grid;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.control-group {
+  display: grid;
+  gap: 10px;
+}
+
+.control-group span {
+  color: #0d2b45;
+  font-weight: 600;
+}
+
+.control-group input[type='range'] {
+  width: 100%;
+  accent-color: #0d8adf;
+}
+
+.primary-button,
+.secondary-button,
+.ghost-button {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 20px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.ghost-button:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button {
+  color: #ffffff;
+  background: linear-gradient(135deg, #0d8adf, #16b6d4);
+  box-shadow: 0 18px 34px rgba(13, 138, 223, 0.28);
+}
+
+.secondary-button {
+  color: #0d2b45;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(13, 43, 69, 0.12);
+}
+
+.ghost-button {
+  color: #0d2b45;
+  background: rgba(13, 43, 69, 0.08);
+}
+
+.primary-button:disabled,
+.secondary-button:disabled,
+.ghost-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.download-button {
+  width: 100%;
+  margin-top: 22px;
+  justify-self: start;
+}
+
+.hidden-input {
+  display: none;
+}
+
+.status-message {
+  margin: 14px 0 0;
+  font-size: 0.95rem;
+}
+
+.status-message.error {
+  color: #b42318;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    padding-inline: 16px;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding: 20px 12px 32px;
+  }
+
+  .hero-panel h1 {
+    font-size: clamp(1.9rem, 10vw, 2.9rem);
+    line-height: 1.02;
+  }
+
+  .hero-text {
+    margin-top: 14px;
+    font-size: 0.95rem;
+  }
+
+  .hero-panel {
+    margin-bottom: 20px;
+  }
+
+  .camera-actions,
+  .action-row {
+    flex-direction: column;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .ghost-button {
+    width: 100%;
+  }
+
+  .frame-stage {
+    padding: 12px;
+    border-radius: 22px;
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .panel-heading h2 {
+    font-size: 1.1rem;
+  }
+
+  .panel-heading p {
+    font-size: 0.92rem;
+  }
+
+  .camera-box {
+    padding: 12px;
+  }
+
+  .camera-feed {
+    border-radius: 14px;
+  }
+
+  .empty-state {
+    min-height: 180px;
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .frame-image-layer,
+  .frame-placeholder {
+    border-radius: 18px;
+  }
+
+  .frame-placeholder p {
+    inset: auto 12px 14px;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    border-radius: 16px;
+  }
+
+  .controls {
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .control-group {
+    gap: 8px;
+  }
+
+  .control-group span {
+    font-size: 0.95rem;
+  }
+
+  .download-button {
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-shell {
+    padding-inline: 10px;
+  }
+
+  .eyebrow {
+    margin-bottom: 10px;
+    font-size: 0.72rem;
+  }
+
+  .hero-panel h1 {
+    font-size: clamp(1.7rem, 10vw, 2.35rem);
+  }
+
+  .hero-text {
+    font-size: 0.9rem;
+  }
+
+  .action-row {
+    margin-top: 20px;
+    gap: 10px;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .ghost-button {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .frame-stage {
+    padding: 10px;
+  }
+
+  .frame-placeholder p {
+    font-size: 0.8rem;
+  }
+
+  .status-message {
+    font-size: 0.9rem;
+  }
+}
