@@ -5,6 +5,7 @@ import App from './App.jsx'
 import ImagesPage from './ImagesPage.jsx'
 import AdminPage from './AdminPage.jsx'
 import VotingPage from './VotingPage.jsx'
+import LeaderboardPage from './LeaderboardPage.jsx'
 
 function RootRouter() {
   const pathname = window.location.pathname
@@ -19,6 +20,10 @@ function RootRouter() {
 
   if (pathname.endsWith('/voting') || pathname.endsWith('/voting/')) {
     return <VotingPage />
+  }
+
+  if (pathname.endsWith('/leaderboard') || pathname.endsWith('/leaderboard/')) {
+    return <LeaderboardPage />
   }
 
   return <App />

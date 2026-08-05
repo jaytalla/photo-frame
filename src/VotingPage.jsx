@@ -204,13 +204,21 @@ function VotingPage() {
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,#f7d9e2_0%,#f3f4f6_28%,#e9edf5_100%)] px-4 py-5 text-[#162033] sm:px-6 lg:px-8">
       <section className="mx-auto flex min-h-[calc(100vh-2.5rem)] w-full max-w-5xl flex-col gap-5">
         <header className="flex items-center justify-between rounded-[24px] border border-white/70 bg-white/78 px-4 py-4 shadow-[0_16px_40px_rgba(27,39,65,0.08)] backdrop-blur sm:px-6">
-          <a
-            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
-            href="/photo-frame/images"
-          >
-            <span>{'\u2039'}</span>
-            Back
-          </a>
+          <div className="flex flex-wrap gap-3">
+            <a
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
+              href="/photo-frame/images"
+            >
+              <span>{'\u2039'}</span>
+              Back
+            </a>
+            <a
+              className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50"
+              href="/photo-frame/leaderboard"
+            >
+              Leaderboard
+            </a>
+          </div>
           <div className="text-right">
             <p className="text-[0.72rem] font-bold uppercase tracking-[0.22em] text-slate-400">
               Voting
