@@ -220,9 +220,7 @@ function VotingPage() {
             </a>
           </div>
           <div className="text-right">
-            <p className="text-[0.72rem] font-bold uppercase tracking-[0.22em] text-slate-400">
-              Voting
-            </p>
+            
             <p className="text-sm font-semibold text-slate-600">Swipe or tap to react</p>
           </div>
         </header>
@@ -376,14 +374,7 @@ function VotingPage() {
 
             <aside className="flex flex-col gap-5">
               <div className="rounded-[28px] border border-white/70 bg-white/78 p-5 shadow-[0_20px_48px_rgba(27,39,65,0.08)] backdrop-blur">
-                <div className="mt-4 rounded-[20px] bg-[#f6f7fb] px-4 py-3 text-center">
-                  <p className="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-slate-400">
-                    Hearts
-                  </p>
-                  <p className="mt-2 text-4xl font-black leading-none text-slate-900">
-                    {getHeartCount(currentImage)}
-                  </p>
-                </div>
+                
 
                 <center>
                   <button
