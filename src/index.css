@@ -23,3 +23,192 @@ body {
   margin: 0;
   min-width: 320px;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeReverse {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: perspective(1400px) rotateX(22deg) scale(0.72) translateY(60px);
+    filter: blur(12px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: perspective(1400px) rotateX(-6deg) scale(1.03) translateY(-10px);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: perspective(1400px) rotateX(0deg) scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes spotlightPulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+
+  100% {
+    opacity: 0.5;
+    transform: scale(0.92);
+  }
+}
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) rotateX(18deg) rotateY(-18deg) scale(0.78) translateY(70px);
+    filter: blur(10px);
+  }
+
+  55% {
+    opacity: 1;
+    transform: perspective(1200px) rotateX(-5deg) rotateY(6deg) scale(1.03) translateY(-12px);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes cardFloat {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-10px) scale(1.01);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cardJump {
+  0% {
+    transform: translateY(0) scale(1) rotateZ(0deg);
+  }
+
+  20% {
+    transform: translateY(-16px) scale(1.02) rotateZ(-1.5deg);
+  }
+
+  40% {
+    transform: translateY(0) scale(0.995) rotateZ(1deg);
+  }
+
+  60% {
+    transform: translateY(-8px) scale(1.01) rotateZ(-0.5deg);
+  }
+
+  100% {
+    transform: translateY(0) scale(1) rotateZ(0deg);
+  }
+}
+
+@keyframes cardStretch {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+
+  25% {
+    transform: scale(1.03, 0.96) translateY(-6px);
+  }
+
+  50% {
+    transform: scale(0.98, 1.04) translateY(2px);
+  }
+
+  75% {
+    transform: scale(1.02, 0.98) translateY(-4px);
+  }
+
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+
+@keyframes cardSwing {
+  0% {
+    transform: rotateZ(-1.5deg) translateY(0);
+  }
+
+  25% {
+    transform: rotateZ(2.5deg) translateY(-8px);
+  }
+
+  50% {
+    transform: rotateZ(-1deg) translateY(2px);
+  }
+
+  75% {
+    transform: rotateZ(1.8deg) translateY(-5px);
+  }
+
+  100% {
+    transform: rotateZ(-1.5deg) translateY(0);
+  }
+}
+
+@keyframes cardPulseTilt {
+  0% {
+    transform: perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1);
+  }
+
+  25% {
+    transform: perspective(1200px) rotateX(2deg) rotateY(-4deg) scale(1.02);
+  }
+
+  50% {
+    transform: perspective(1200px) rotateX(-2deg) rotateY(4deg) scale(0.99);
+  }
+
+  75% {
+    transform: perspective(1200px) rotateX(1deg) rotateY(-2deg) scale(1.015);
+  }
+
+  100% {
+    transform: perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1);
+  }
+}
+
+@keyframes cardShine {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+
+  100% {
+    transform: translateX(140%) skewX(-18deg);
+  }
+}

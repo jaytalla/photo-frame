@@ -11,6 +11,17 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+.env.*
+!.env.example
+service-account*.json
+client_secret*.json
+google-services*.json
+firebase-admin*.json
+credentials*.json
+oauth-client*.json
+*-service-account.json
+photo-booth-504611-3dc920975a6c.json
 
 # Editor directories and files
 .vscode/*
