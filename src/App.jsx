@@ -552,18 +552,19 @@ function App() {
             >
               Sign Out
             </button>
-            {/* <a
+            <a
               className="inline-flex items-center justify-center rounded-full bg-brand-sky px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5"
               href="/photo-frame/images"
             >
               Images Page
             </a>
             <a
-              className="inline-flex items-center justify-center rounded-full border border-brand-ink/10 bg-white px-5 py-3 text-sm font-semibold text-brand-ink transition hover:-translate-y-0.5"
-              href="/photo-frame/admin"
+              className="inline-flex items-center justify-center rounded-full bg-brand-coral px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5"
+              href="/photo-frame/voting"
             >
-              Admin
-            </a> */}
+              Voting
+            </a>
+            
           </div>
 
           

@@ -212,3 +212,76 @@ body {
     transform: translateX(140%) skewX(-18deg);
   }
 }
+
+@keyframes heartBadgePulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(255, 111, 143, 0));
+  }
+
+  40% {
+    transform: scale(1.18);
+    filter: drop-shadow(0 6px 14px rgba(255, 111, 143, 0.42));
+  }
+
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(255, 111, 143, 0));
+  }
+}
+
+@keyframes heartButtonPop {
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.28) rotate(-10deg);
+  }
+
+  65% {
+    transform: scale(0.92) rotate(8deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes floatHeart {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.7);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -18px) scale(1.08);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -124px) scale(1.24);
+  }
+}
+
+@keyframes heartBurst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(
+        calc(-50% + var(--burst-x, 0px)),
+        calc(-50% + var(--burst-y, -100px))
+      )
+      scale(1.14)
+      rotate(var(--burst-rotate, 0deg));
+  }
+}

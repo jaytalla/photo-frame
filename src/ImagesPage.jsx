@@ -1,6 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import dswdImage from './assets/dswd.jpg'
 import { subscribeToImageRecords } from './lib/firebase'
+import {
+  getBlurImageUrl,
+  getDisplayImageUrl,
+  getHeartCount,
+  getParadeImageUrl,
+} from './lib/imageRecords'
 
 const carouselIntervalMs = 5000
 const paradeDurationMs = 8000
@@ -226,11 +232,12 @@ function ImagesPage() {
                         style={{
                           transform: `perspective(1200px) rotateY(${row % 2 === 0 ? '-10deg' : '10deg'}) rotateZ(${((index + row) % 7) - 3}deg) translateY(${((index + row) % 4) * 8}px)`,
                         }}
-                      >
-                        <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(255,255,255,0.22),transparent_18%,transparent_82%,rgba(13,43,69,0.18))]" />
-                        {blurUrl ? (
-                          <img
-                            src={blurUrl}
+                        >
+                          <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(255,255,255,0.22),transparent_18%,transparent_82%,rgba(13,43,69,0.18))]" />
+                          <HeartCountBadge image={image} className="left-3 top-3 z-20 text-[11px] md:text-xs" />
+                          {blurUrl ? (
+                            <img
+                              src={blurUrl}
                             alt=""
                             className={`absolute inset-0 h-full w-full bg-white object-contain p-2 transition duration-500 ${
                               isLoaded ? 'scale-105 opacity-0 blur-xl' : 'opacity-100 blur-md'
@@ -303,6 +310,7 @@ function ImagesPage() {
                           <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.35),transparent_40%)]" />
                           <div className="absolute inset-[10px] z-10 rounded-[20px] border border-white/35" />
                           <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(120deg,transparent_18%,rgba(255,255,255,0.32)_40%,transparent_62%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:animate-[cardShine_1.15s_ease]" />
+                          <HeartCountBadge image={image} className="left-4 top-4 z-20" />
                           <div className="relative h-full w-full bg-[radial-gradient(circle_at_top,rgba(44,169,225,0.18),transparent_38%),linear-gradient(180deg,#eef5ff_0%,#ddeaff_100%)]">
                             {blurUrl ? (
                               <img
@@ -431,40 +439,21 @@ function chunkImages(items, size) {
   return chunks
 }
 
-function getDisplayImageUrl(image) {
-  if (image.drivePreviewUrl) {
-    return image.drivePreviewUrl
+function HeartCountBadge({ image, className = '' }) {
+  const heartCount = getHeartCount(image)
+
+  if (!heartCount) {
+    return null
   }
 
-  if (image.driveFileId) {
-    return `https://drive.google.com/thumbnail?id=${image.driveFileId}&sz=w720`
-  }
-
-  return image.driveWebViewLink || ''
-}
-
-function getParadeImageUrl(image) {
-  if (image.driveParadeUrl) {
-    return image.driveParadeUrl
-  }
-
-  if (image.driveFileId) {
-    return `https://drive.google.com/thumbnail?id=${image.driveFileId}&sz=w384`
-  }
-
-  return getDisplayImageUrl(image)
-}
-
-function getBlurImageUrl(image) {
-  if (image.previewDataUrl) {
-    return image.previewDataUrl
-  }
-
-  if (image.driveFileId) {
-    return `https://drive.google.com/thumbnail?id=${image.driveFileId}&sz=w128`
-  }
-
-  return ''
+  return (
+    <div
+      className={`absolute inline-flex items-center gap-2 rounded-full border border-white/60 bg-[#13233d]/72 px-3 py-1.5 font-semibold text-white shadow-[0_12px_28px_rgba(13,43,69,0.22)] backdrop-blur ${className}`}
+    >
+      <span className="text-[#ff6f8f] animate-[heartBadgePulse_1.9s_ease-in-out_infinite]">♥</span>
+      <span>{heartCount}</span>
+    </div>
+  )
 }
 
 export default ImagesPage

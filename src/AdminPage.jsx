@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { deleteImageRecord, subscribeToImageRecords } from './lib/firebase'
+import { getDisplayImageUrl, getHeartCount, getParadeImageUrl } from './lib/imageRecords'
 
 const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD || ''
 const adminSessionKey = 'photo-frame-admin-session'
@@ -184,6 +185,12 @@ function AdminPage() {
             >
               Open Images View
             </a>
+            <a
+              className="inline-flex items-center justify-center rounded-full bg-brand-coral px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5"
+              href="/photo-frame/voting"
+            >
+              Open Voting
+            </a>
             <button
               className="inline-flex items-center justify-center rounded-full border border-brand-ink/10 bg-white px-5 py-3 text-sm font-semibold text-brand-ink transition hover:-translate-y-0.5"
               type="button"
@@ -245,6 +252,11 @@ function AdminPage() {
                     <p className="text-xs text-brand-muted">
                       {image.uploadedByName || image.uploadedByEmail || 'Unknown uploader'}
                     </p>
+                    {getHeartCount(image) ? (
+                      <p className="text-xs font-semibold text-brand-coral">
+                        Hearts: {getHeartCount(image)}
+                      </p>
+                    ) : null}
                     <button
                       className="mt-2 inline-flex items-center justify-center rounded-full bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
                       type="button"
@@ -296,19 +308,7 @@ function AdminPage() {
 }
 
 function getAdminImageUrl(image) {
-  if (image.driveParadeUrl) {
-    return image.driveParadeUrl
-  }
-
-  if (image.drivePreviewUrl) {
-    return image.drivePreviewUrl
-  }
-
-  if (image.driveFileId) {
-    return `https://drive.google.com/thumbnail?id=${image.driveFileId}&sz=w720`
-  }
-
-  return image.driveWebViewLink || ''
+  return getParadeImageUrl(image) || getDisplayImageUrl(image)
 }
 
 export default AdminPage

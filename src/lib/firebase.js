@@ -5,11 +5,13 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  increment,
   getFirestore,
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
+  updateDoc,
 } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -36,6 +38,7 @@ export async function saveImageRecord(record) {
   }
 
   const docRef = await addDoc(collection(firestore, 'images'), {
+    heartCount: 0,
     ...record,
     createdAt: serverTimestamp(),
   })
@@ -86,4 +89,17 @@ export async function deleteImageRecord(imageId) {
   await deleteDoc(doc(firestore, 'images', imageId))
 
   return { deleted: true }
+}
+
+export async function incrementImageHeart(imageId) {
+  if (!firestore) {
+    return { updated: false, reason: 'missing-config' }
+  }
+
+  await updateDoc(doc(firestore, 'images', imageId), {
+    heartCount: increment(1),
+    lastHeartedAt: serverTimestamp(),
+  })
+
+  return { updated: true }
 }
