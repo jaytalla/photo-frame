@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import frameImage from '../assets/test-frame.png'
-import { isFirestoreReady, saveImageRecord } from './lib/firebase'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { isFirestoreReady, saveImageRecord, subscribeToAppSettings } from './lib/firebase'
+import { DEFAULT_FRAME_ID, buildFrameOptions, getFrameById, normalizeCustomFrames } from './lib/frameOptions'
 
 const FRAME_SIZE = 1200
 const GOOGLE_SCOPE =
@@ -37,6 +37,9 @@ function App() {
   const [googleReady, setGoogleReady] = useState(false)
   const [user, setUser] = useState(null)
   const [authError, setAuthError] = useState('')
+  const [selectedFrameId, setSelectedFrameId] = useState(DEFAULT_FRAME_ID)
+  const [allowFreeFrameChoice, setAllowFreeFrameChoice] = useState(false)
+  const [customFrames, setCustomFrames] = useState([])
 
   const frameRef = useRef(null)
   const photoRef = useRef(null)
@@ -50,6 +53,8 @@ function App() {
   const accessTokenRef = useRef('')
 
   const circleDiameter = PHOTO_CIRCLE.radius * 2
+  const frameOptions = useMemo(() => buildFrameOptions(customFrames), [customFrames])
+  const activeFrame = getFrameById(selectedFrameId, customFrames)
 
   useEffect(() => {
     const storedUser = readStoredUser()
@@ -57,6 +62,27 @@ function App() {
     if (storedUser) {
       setUser(storedUser)
     }
+  }, [])
+
+  useEffect(() => {
+    return subscribeToAppSettings(
+      (settings) => {
+        const nextDefaultFrameId = settings?.selectedFrameId || DEFAULT_FRAME_ID
+        const nextAllowFreeFrameChoice = Boolean(settings?.allowFreeFrameChoice)
+        const nextCustomFrames = normalizeCustomFrames(settings?.customFrames)
+
+        setCustomFrames(nextCustomFrames)
+        setAllowFreeFrameChoice(nextAllowFreeFrameChoice)
+        setSelectedFrameId((currentFrameId) =>
+          nextAllowFreeFrameChoice ? currentFrameId || nextDefaultFrameId : nextDefaultFrameId,
+        )
+      },
+      () => {
+        setCustomFrames([])
+        setAllowFreeFrameChoice(false)
+        setSelectedFrameId(DEFAULT_FRAME_ID)
+      },
+    )
   }, [])
 
   useEffect(() => {
@@ -649,6 +675,54 @@ function App() {
               </p>
             </div>
 
+            {allowFreeFrameChoice ? (
+              <div className="mt-5">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-sm font-semibold text-brand-ink">Choose Your Frame</p>
+                  <p className="text-xs font-medium uppercase tracking-[0.14em] text-brand-muted">
+                    Swipe
+                  </p>
+                </div>
+                <div className="-mx-1 mt-3 flex snap-x snap-mandatory gap-2 overflow-x-auto px-1 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                  {frameOptions.map((frame) => {
+                    const isSelected = selectedFrameId === frame.id
+
+                    return (
+                      <label
+                        key={frame.id}
+                        className={`w-[96px] flex-none snap-center cursor-pointer rounded-[16px] border p-2 transition ${
+                          isSelected
+                            ? 'border-brand-sky bg-brand-sky/8 shadow-soft'
+                            : 'border-brand-ink/10 bg-white'
+                        }`}
+                      >
+                        <input
+                          className="sr-only"
+                          type="radio"
+                          name="userSelectedFrameId"
+                          value={frame.id}
+                          checked={isSelected}
+                          onChange={(event) => setSelectedFrameId(event.target.value)}
+                        />
+                        <img
+                          src={frame.src}
+                          alt={frame.label}
+                          className="h-20 w-20 rounded-[12px] object-cover"
+                        />
+                        <p className="mt-1 text-[11px] font-semibold leading-4 text-brand-ink">
+                          {frame.label}
+                        </p>
+                      </label>
+                    )
+                  })}
+                </div>
+              </div>
+            ) : (
+              <p className="mt-4 text-sm text-brand-muted">
+                Using the admin-selected default frame.
+              </p>
+            )}
+
             <div
               ref={previewRef}
               className="mt-5 rounded-[22px] bg-[linear-gradient(135deg,rgba(44,169,225,0.1),rgba(255,111,52,0.1)),#ffffff] p-2.5 sm:p-3 lg:p-4"
@@ -671,7 +745,7 @@ function App() {
                   />
                   <img
                     ref={frameRef}
-                    src={frameImage}
+                    src={activeFrame.src}
                     alt="Decorative picture frame source"
                     className="hidden"
                     draggable="false"
@@ -685,7 +759,7 @@ function App() {
                 <div className="relative mx-auto grid aspect-square w-full max-w-[640px] place-items-center overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,rgba(44,169,225,0.14),rgba(255,111,52,0.12)),#ffffff] sm:rounded-[24px]">
                   <img
                     ref={frameRef}
-                    src={frameImage}
+                    src={activeFrame.src}
                     alt="Decorative picture frame"
                     className="block h-full w-full select-none pointer-events-none"
                     draggable="false"

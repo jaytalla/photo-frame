@@ -20,4 +20,35 @@ See `.env.example` for the required variables.
 - Use the OAuth client ID in the browser, not the client secret.
 - Files are uploaded into the Drive account of the Google user who approves access.
 - If Firebase is configured, each successful upload also creates a Firestore document in the `images` collection.
-- For quick testing, your Firestore `images` collection rules can temporarily allow public read/write.
+- For quick testing, your Firestore `images` and `settings` collections can temporarily allow public read/write.
+- A sample rules file is included in [`firestore.rules`](./firestore.rules). If you are editing rules in the Firebase Console, use:
+
+```txt
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /images/{imageId} {
+      allow read, write: if true;
+    }
+
+    match /settings/{documentId} {
+      allow read, write: if true;
+    }
+  }
+}
+```
+
+- Custom frame templates are uploaded to Firebase Storage and only their metadata is saved in Firestore settings. For quick testing, your Storage rules can temporarily allow public read/write too:
+
+```txt
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /frame-templates/{allPaths=**} {
+      allow read, write: if true;
+    }
+  }
+}
+```
