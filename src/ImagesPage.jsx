@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import pageBackground from '../assets/bg.png'
+import wellnessLogo from '../assets/logos/wellness.png'
 import dswdImage from './assets/dswd.jpg'
 import { subscribeToImageRecords } from './lib/firebase'
 import {
@@ -394,7 +395,7 @@ function SpotlightPanel() {
     <section className="relative grid min-h-screen place-items-center overflow-hidden px-6 py-10">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.78),transparent_32%),radial-gradient(circle_at_top,rgba(44,169,225,0.16),transparent_24%),radial-gradient(circle_at_bottom,rgba(255,111,52,0.18),transparent_22%)]" />
       <div className="absolute inset-0 animate-[spotlightPulse_3.8s_ease-in-out_infinite] bg-[radial-gradient(circle_at_center,rgba(255,214,102,0.22),transparent_36%)]" />
-      <div className="relative flex w-full max-w-3xl items-center justify-center">
+      <div className="relative flex w-full max-w-6xl flex-col items-center justify-center gap-6">
         <div className="animate-[logoReveal_1.1s_cubic-bezier(0.22,1,0.36,1)_both] rounded-[34px] border border-white/70 bg-white/88 p-4 shadow-[0_38px_100px_rgba(13,43,69,0.28)] backdrop-blur md:p-6">
           <img
             src={dswdImage}
@@ -402,6 +403,11 @@ function SpotlightPanel() {
             className="h-auto max-h-[72vh] w-full rounded-[24px] object-contain"
           />
         </div>
+        <img
+          src={wellnessLogo}
+          alt="Wellness Activity 2026 Crisis Intervention Program"
+          className="animate-[logoReveal_1.3s_cubic-bezier(0.22,1,0.36,1)_both] h-auto w-full max-w-6xl object-contain drop-shadow-[0_26px_60px_rgba(13,43,69,0.28)]"
+        />
       </div>
     </section>
   )
