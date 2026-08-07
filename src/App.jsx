@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { isFirestoreReady, saveImageRecord, subscribeToAppSettings } from './lib/firebase'
 import { DEFAULT_FRAME_ID, buildFrameOptions, getFrameById, normalizeCustomFrames } from './lib/frameOptions'
+import pageBackground from '../assets/bg.png'
+import dswdLogo from '../assets/logos/dswd.png'
+import wellnessLogo from '../assets/logos/wellness.png'
+import googleLogo from '../assets/logos/google.png'
 
 const FRAME_SIZE = 1200
 const GOOGLE_SCOPE =
@@ -485,26 +489,44 @@ function App() {
 
   if (!user) {
     return (
-      <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(44,169,225,0.18),transparent_28%),radial-gradient(circle_at_top_right,rgba(255,111,52,0.16),transparent_24%),linear-gradient(180deg,#f8fbff_0%,#eef4ff_100%)] px-3 py-5 sm:px-4 sm:py-8 lg:px-6 lg:py-10">
-        <section className="mx-auto flex min-h-[80vh] w-full max-w-6xl items-center justify-center">
+      <main
+        className="flex min-h-screen flex-col items-center justify-center space-y-0 bg-center bg-cover bg-no-repeat px-3 py-5 sm:px-4 sm:py-8 lg:px-6"
+        style={{ backgroundImage: `url(${pageBackground})` }}
+      >
+        <img
+          src={dswdLogo}
+          alt="DSWD logo"
+          className="mx-auto mb-4 h-16 w-auto sm:h-20"
+        />
+        <section className="mx-auto flex h-fit w-full max-w-6xl items-center justify-center">
           <div className="w-full max-w-md rounded-[28px] border border-brand-ink/12 bg-white/90 p-6 text-center shadow-panel backdrop-blur md:p-8">
-            <p className="mb-2 text-[0.72rem] font-bold uppercase tracking-[0.18em] text-brand-coral sm:text-xs">
-              DSWD Access
-            </p>
-            <h1 className="text-3xl font-black leading-[1.02] tracking-[-0.06em] text-brand-ink">
+            <img
+              src={wellnessLogo}
+              alt="DSWD logo"
+              className="mx-auto mb-4 h-16 w-full sm:h-20 -mt-10"
+            />
+            <h3 className="text-1xl font-bold leading-[1.02] tracking-[-0.06em] text-brand-ink">
               Sign in before opening the photo frame
-            </h1>
+            </h3>
             <p className="mt-3 text-sm leading-6 text-brand-muted">
               Access is limited to Google accounts under {allowedEmailDomain}.
             </p>
             <div className="mt-6 flex justify-center">
+              
               <button
                 className={secondaryButtonClass}
                 type="button"
                 onClick={signInWithGoogle}
                 disabled={!googleReady}
               >
-                Sign in with Google
+                <div className='flex flex-row space-x-4 gap-x-4 justify-center items-center'>
+                  <img
+                    src={googleLogo}
+                    alt="DSWD logo"
+                    className="mx-auto mb-4 h-10 w-10"
+                  />
+                  <p>Sign in with Google</p>
+                </div>
               </button>
             </div>
             {authError ? <p className="mt-4 text-sm text-red-700">{authError}</p> : null}
@@ -518,7 +540,10 @@ function App() {
   }
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(44,169,225,0.18),transparent_28%),radial-gradient(circle_at_top_right,rgba(255,111,52,0.16),transparent_24%),linear-gradient(180deg,#f8fbff_0%,#eef4ff_100%)] px-3 py-5 sm:px-4 sm:py-8 lg:px-6 lg:py-10">
+    <main
+      className="min-h-screen bg-cover bg-center bg-no-repeat px-3 py-5 sm:px-4 sm:py-8 lg:px-6 lg:py-10"
+      style={{ backgroundImage: `url(${pageBackground})` }}
+    >
       {isDownloading ? (
         <div className="fixed inset-0 z-50 grid place-items-center bg-brand-ink/35 px-4 backdrop-blur-sm">
           <div className="w-full max-w-md rounded-[28px] border border-white/50 bg-white/95 p-6 shadow-[0_35px_100px_rgba(13,43,69,0.25)]">

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import pageBackground from '../assets/bg.png'
 import { subscribeToImageRecords } from './lib/firebase'
 import { getDisplayImageUrl, getHeartCount } from './lib/imageRecords'
 
@@ -74,7 +75,10 @@ function LeaderboardPage() {
   const totalWithHearts = rankedImages.filter((image) => image.heartCount > 0).length
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,#dbeafe_0%,#f8fafc_36%,#eef2ff_100%)] px-4 py-5 text-[#162033] sm:px-6 lg:px-8">
+    <main
+      className="min-h-screen bg-cover bg-center bg-no-repeat px-4 py-5 text-[#162033] sm:px-6 lg:px-8"
+      style={{ backgroundImage: `url(${pageBackground})` }}
+    >
       <section className="mx-auto flex min-h-[calc(100vh-2.5rem)] w-full max-w-6xl flex-col gap-5">
         <header className="flex flex-col gap-4 rounded-[24px] border border-white/70 bg-white/82 px-5 py-5 shadow-[0_16px_40px_rgba(27,39,65,0.08)] backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <div>

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import pageBackground from '../assets/bg.png'
 import dswdImage from './assets/dswd.jpg'
 import { subscribeToImageRecords } from './lib/firebase'
 import {
@@ -192,7 +193,10 @@ function ImagesPage() {
   }, [isPreparingParade, isSpotlightMode])
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(44,169,225,0.12),transparent_20%),radial-gradient(circle_at_bottom_right,rgba(255,111,52,0.12),transparent_18%),linear-gradient(145deg,#eef5ff_0%,#dfe9ff_30%,#f7fbff_100%)]">
+    <main
+      className="min-h-screen overflow-hidden bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${pageBackground})` }}
+    >
       <section className="relative min-h-screen">
         <a
           className="absolute left-4 top-4 z-30 inline-flex items-center justify-center rounded-full bg-white/75 px-4 py-2 text-sm font-semibold text-brand-ink shadow-[0_18px_40px_rgba(13,43,69,0.14)] backdrop-blur transition hover:-translate-y-0.5 md:left-6 md:top-6"

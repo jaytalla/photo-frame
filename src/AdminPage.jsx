@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import pageBackground from '../assets/bg.png'
 import {
   deleteFrameTemplate,
   deleteImageRecord,
@@ -318,7 +319,10 @@ function AdminPage() {
 
   if (!isUnlocked) {
     return (
-      <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(44,169,225,0.18),transparent_28%),radial-gradient(circle_at_top_right,rgba(255,111,52,0.16),transparent_24%),linear-gradient(180deg,#f8fbff_0%,#eef4ff_100%)] px-4 py-8">
+      <main
+        className="min-h-screen bg-cover bg-center bg-no-repeat px-4 py-8"
+        style={{ backgroundImage: `url(${pageBackground})` }}
+      >
         <section className="mx-auto flex min-h-[80vh] max-w-6xl items-center justify-center">
           <div className="w-full max-w-md rounded-[28px] border border-brand-ink/12 bg-white/90 p-6 shadow-panel backdrop-blur md:p-8">
             <p className="text-[0.72rem] font-bold uppercase tracking-[0.18em] text-brand-coral">
@@ -363,7 +367,10 @@ function AdminPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(44,169,225,0.18),transparent_28%),radial-gradient(circle_at_top_right,rgba(255,111,52,0.16),transparent_24%),linear-gradient(180deg,#f8fbff_0%,#eef4ff_100%)] px-4 py-6 md:px-6 md:py-8">
+    <main
+      className="min-h-screen bg-cover bg-center bg-no-repeat px-4 py-6 md:px-6 md:py-8"
+      style={{ backgroundImage: `url(${pageBackground})` }}
+    >
       <section className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-4 rounded-[28px] border border-brand-ink/10 bg-white/80 px-5 py-5 shadow-panel backdrop-blur md:flex-row md:items-center md:justify-between md:px-6">
           <div>

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import heartButtonImage from '../assets/heart.jpg'
+import pageBackground from '../assets/bg.png'
 import { incrementImageHeart, subscribeToImageRecords } from './lib/firebase'
 import { getDisplayImageUrl, getHeartCount } from './lib/imageRecords'
 
@@ -201,7 +202,10 @@ function VotingPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,#f7d9e2_0%,#f3f4f6_28%,#e9edf5_100%)] px-4 py-5 text-[#162033] sm:px-6 lg:px-8">
+    <main
+      className="min-h-screen bg-cover bg-center bg-no-repeat px-4 py-5 text-[#162033] sm:px-6 lg:px-8"
+      style={{ backgroundImage: `url(${pageBackground})` }}
+    >
       <section className="mx-auto flex min-h-[calc(100vh-2.5rem)] w-full max-w-5xl flex-col gap-5">
         <header className="flex items-center justify-between rounded-[24px] border border-white/70 bg-white/78 px-4 py-4 shadow-[0_16px_40px_rgba(27,39,65,0.08)] backdrop-blur sm:px-6">
           <div className="flex flex-wrap gap-3">
